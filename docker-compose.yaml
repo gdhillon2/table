@@ -1,0 +1,24 @@
+services:
+  db:
+    build:
+      context: ./server
+    image: my-pg-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    shm_size: 128mb
+  nextjs:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://myuser:mypassword@db:5432/mydatabase
+    depends_on:
+      - db
+    volumes:
+      - ./client:/app

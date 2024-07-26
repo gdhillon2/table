@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#__next {
+  width: 80%;
+  height: 80%;
+}
+
+@media (max-width: 639px) {
+  #__next {
+    width: 95%;
+    height: 95%;
+  }
+}
+
+body {
+  @apply bg-zinc-900;
+  @apply h-screen;
+  @apply mx-auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}

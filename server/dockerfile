@@ -1,0 +1,7 @@
+from postgres:latest
+
+env POSTGRES_DB=mydatabase
+env POSTGRES_USER=myuser
+env POSTGRES_PASSWORD=mypassword
+
+copy database.sql /docker-entrypoint-initdb.d/
