@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     try {
-      const result = await query("select * from shoppingitems");
+      const result = await query("select * from shoppingitems order by item asc");
       res.status(200).json(result.rows);
     } catch (error) {
       if (error instanceof Error) {

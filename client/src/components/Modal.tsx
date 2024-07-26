@@ -18,12 +18,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
     event.preventDefault();
 
     try {
-      const response = await fetch("api/entries", {
+      const response = await fetch(`api/entries/${item.itemid}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ itemName, amount }),
+        body: JSON.stringify({ item: itemName, amount }),
       });
 
       if (!response.ok) {
@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
       }
       const result = await response.json();
       console.log("success", result);
-
+      fetchData();
       onClose();
     } catch (error) {
       setError("failed to update item");
