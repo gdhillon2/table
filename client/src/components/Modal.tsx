@@ -53,13 +53,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
       className={`fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50 ${isOpen ? "visible" : "invisible"}`}
     >
       <div
-        className={`bg-zinc-300 p-4 rounded-lg shadow-lg max-w-full sm:max-w-md w-full mx-4 sm:mx-auto transform transition-all duration-300 ease-in-out ${
+        className={`bg-slate-500 shadow-2xl rounded-lg shadow-lg max-w-full sm:max-w-md w-full mx-4 sm:mx-auto transform transition-all duration-300 ease-in-out ${
           isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }`}
       >
-        <h2 className="text-xl mb-4">edit item</h2>
+        <h2 className="text-xl mb-4 px-2 py-1 bg-slate-700 text-white rounded-tr-lg rounded-tl-lg">edit item</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-4 px-2">
             <label className="block text-gray-700">name</label>
             <input
               type="text"
@@ -68,7 +68,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
               className="mt-1 p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 px-2">
             <label className="block text-gray-700">amount</label>
             <input
               type="text"
@@ -78,17 +78,17 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
             />
           </div>
           {error && <p className="text-red-500 mb-4">{error}</p>}
-          <div className="flex justify-end">
+          <div className="p-3 flex justify-end">
             <button
               type="button"
               onClick={onClose}
-              className="bg-gray-500 hover:bg-gray-600 text-white p-2 rounded mr-2"
+              className="bg-gray-500 hover:bg-gray-600 transition-all duration-300 text-white p-2 rounded mr-2"
             >
               cancel
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white p-2 rounded mr-2"
+              className="bg-blue-500 hover:bg-blue-800 transition-all duration-300 text-white p-2 rounded mr-2"
             >
               save
             </button>
