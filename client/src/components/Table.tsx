@@ -37,14 +37,14 @@ const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
   };
 
   return (
-    <div className="text-md text-slate-100 bg-zinc-500 rounded-br-lg h-[100%] rounded-bl-lg overflow-y-auto">
+    <div className="text-md text-slate-100 bg-slate-500 rounded-br-lg h-[100%] rounded-bl-lg overflow-y-auto">
       {error && <p>{error}</p>}
       {items.length > 0 && (
-        <div className="container w-100 py-3">
+        <div className="container w-100">
           {items.map((item) => (
             <div
               key={item.itemid}
-              className="flex justify-between transition-colors duration-500 items-center mb-1 p-3 hover:bg-slate-400 hover:text-black"
+              className="flex justify-between transition-colors duration-500 items-center p-3 hover:bg-slate-400 hover:text-black"
             >
               <span className="w-1/3">{item.item}</span>
               <span className="w-1/3">{item.amount}</span>
