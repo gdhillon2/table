@@ -37,37 +37,35 @@ const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
   };
 
   return (
-    <div className="text-md text-slate-100">
+    <div className="text-md text-slate-100 bg-zinc-500 rounded-br-lg h-[100%] rounded-bl-lg overflow-y-auto">
       {error && <p>{error}</p>}
       {items.length > 0 && (
-        <>
-          <div className="container w-100 p-3">
-            {items.map((item) => (
-              <div
-                key={item.itemid}
-                className="flex rounded-lg justify-between transition-colors duration-500 items-center mb-1 p-3 hover:bg-slate-400 hover:text-black"
-              >
-                <span className="w-1/3">{item.item}</span>
-                <span className="w-1/3">{item.amount}</span>
-                <span className="w-1/3">{formatDate(item.created)}</span>
-                <span className="w-1/3 flex flex-col sm:flex-row items-end justify-end gap-2">
-                  <button
-                    onClick={() => onEdit(item)}
-                    className="bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded max-w-max"
-                  >
-                    edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item.itemid)}
-                    className="bg-red-500 hover:bg-red-800 hover:text-white text-black transition-colors duration-500 text-xs p-2 rounded max-w-max"
-                  >
-                    delete
-                  </button>
-                </span>
-              </div>
-            ))}
-          </div>
-        </>
+        <div className="container w-100 py-3">
+          {items.map((item) => (
+            <div
+              key={item.itemid}
+              className="flex justify-between transition-colors duration-500 items-center mb-1 p-3 hover:bg-slate-400 hover:text-black"
+            >
+              <span className="w-1/3">{item.item}</span>
+              <span className="w-1/3">{item.amount}</span>
+              <span className="w-1/3">{formatDate(item.created)}</span>
+              <span className="w-1/3 flex flex-col sm:flex-row items-end justify-end gap-2">
+                <button
+                  onClick={() => onEdit(item)}
+                  className="bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded max-w-max"
+                >
+                  edit
+                </button>
+                <button
+                  onClick={() => handleDelete(item.itemid)}
+                  className="bg-red-500 hover:bg-red-800 hover:text-white text-black transition-colors duration-500 text-xs p-2 rounded max-w-max"
+                >
+                  delete
+                </button>
+              </span>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

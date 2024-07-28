@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { ShoppingItem } from "../types/shoppingItem";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  item: any;
+  item: ShoppingItem | null;
   fetchData: () => Promise<void>;
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
-  if (!isOpen) return null;
-
-  const [itemName, setItemName] = useState<string>(item.item);
-  const [amount, setAmount] = useState<string>(item.amount);
+  const [itemName, setItemName] = useState<string>("");
+  const [amount, setAmount] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen && item) {
+      setItemName(item.item);
+      setAmount(item.amount);
+    }
+  }, [isOpen]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!item) {
+      setError("no item to update!");
+      return;
+    }
 
     try {
       const response = await fetch(`api/entries/${item.itemid}`, {
@@ -37,10 +48,15 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, fetchData }) => {
       setError("failed to update item");
     }
   };
-
   return (
-    <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-4 rounded-lg shadow-lg max-w-full sm:max-w-md w-full mx-4 sm:mx-auto">
+    <div
+      className={`fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50 ${isOpen ? "visible" : "invisible"}`}
+    >
+      <div
+        className={`bg-zinc-300 p-4 rounded-lg shadow-lg max-w-full sm:max-w-md w-full mx-4 sm:mx-auto transform transition-all duration-300 ease-in-out ${
+          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        }`}
+      >
         <h2 className="text-xl mb-4">edit item</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

@@ -1,4 +1,3 @@
-import Container from "../components/Container";
 import EntryForm from "../components/EntryForm";
 import Modal from "../components/Modal";
 import Table from "../components/Table";
@@ -39,20 +38,20 @@ const Index: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="text-white text-3xl">inventory</div>
+    <div>
+      <div className="text-white text-5xl">inventory list</div>
       <EntryForm fetchData={fetchData} />
-      <TableHeader />
-      <Container>
+      <div className="h-[60vh]">
+        <TableHeader />
         <Table items={items} fetchData={fetchData} onEdit={openModal} />
-      </Container>
+      </div>
       <Modal
         item={selectedItem}
         isOpen={isModalOpen}
         onClose={closeModal}
         fetchData={fetchData}
       />
-    </>
+    </div>
   );
 };
 

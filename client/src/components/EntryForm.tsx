@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Button from "./Button/Button";
+import React, { useState, useRef, useEffect } from "react";
 
 interface EntryFormProps {
   fetchData: () => Promise<void>;
@@ -8,9 +7,36 @@ interface EntryFormProps {
 const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
   const [item, setItem] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+
+  const nameRef = useRef<HTMLInputElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
+  const addButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    nameRef.current?.focus();
+  }, []);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      if (document.activeElement === nameRef.current) {
+        amountRef.current?.focus();
+      } else if (document.activeElement === amountRef.current) {
+        addButtonRef.current?.focus();
+      } else if (document.activeElement === addButtonRef.current) {
+        nameRef.current?.focus();
+      }
+    }
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (item === "") {
+      setError("no item inputted");
+    } else if (amount === "") {
+      setError("no amount inputted");
+    }
     try {
       const response = await fetch("api/entries", {
         method: "POST",
@@ -35,39 +61,35 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
 
   return (
     <div className="flex flex-col items-center my-3 space-y-2 w-full">
-      <form onSubmit={handleSubmit} className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        onKeyDown={handleKeyDown}
+        className="w-full"
+      >
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full">
-          <div className="flex flex-col sm:flex-row sm:items-center w-full sm:w-auto">
-            <label
-              htmlFor="item"
-              className="sm:mr-4 text-gray-400"
-              style={{ display: "inline-block" }}
-            >
-              name
-            </label>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:w-auto">
             <input
               id="item"
-              className="rounded p-1 w-full sm:w-auto"
+              placeholder="name"
+              className="rounded w-full px-2 sm:w-auto"
+              ref={nameRef}
               value={item}
               onChange={(e) => setItem(e.target.value)}
             />
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-center w-full sm:w-auto">
-            <label
-              htmlFor="amount"
-              className="sm:mr-4 text-gray-400"
-              style={{ display: "inline-block" }}
-            >
-              amount
-            </label>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:w-auto">
             <input
               id="amount"
-              className="rounded p-1"
+              placeholder="amount"
+              ref={amountRef}
+              className="rounded w-full px-2 sm:w-auto"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-          <Button icon="add" description="submit your entry" />
+          <button ref={addButtonRef} className="text-white">
+            add
+          </button>
         </div>
       </form>
     </div>
