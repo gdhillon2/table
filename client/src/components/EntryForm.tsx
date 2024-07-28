@@ -8,10 +8,10 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
   const [item, setItem] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [example, setExample] = useState<string>("");
 
   const nameRef = useRef<HTMLInputElement>(null);
   const amountRef = useRef<HTMLInputElement>(null);
-  const addButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     nameRef.current?.focus();
@@ -23,8 +23,6 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
       if (document.activeElement === nameRef.current) {
         amountRef.current?.focus();
       } else if (document.activeElement === amountRef.current) {
-        addButtonRef.current?.focus();
-      } else if (document.activeElement === addButtonRef.current) {
         nameRef.current?.focus();
       }
     }
@@ -66,12 +64,15 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
         onKeyDown={handleKeyDown}
         className="w-full"
       >
-        <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full">
+      <label className="text-slate-200">
+        add an item
+      </label>
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full">
           <div className="flex flex-col sm:flex-row sm:items-center sm:w-auto">
             <input
               id="item"
               placeholder="name"
-              className="rounded w-full px-2 sm:w-auto"
+              className="rounded w-full px-2 py-1 text-slate-100 bg-slate-700 sm:w-auto"
               ref={nameRef}
               value={item}
               onChange={(e) => setItem(e.target.value)}
@@ -82,12 +83,12 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
               id="amount"
               placeholder="amount"
               ref={amountRef}
-              className="rounded w-full px-2 sm:w-auto"
+              className="rounded w-full px-2 py-1 text-slate-100 bg-slate-700 sm:w-auto"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-          <button ref={addButtonRef} className="text-white">
+          <button className="text-slate-100 bg-slate-900 hover:bg-slate-400 hover:text-slate-900 py-1 px-2 rounded">
             add
           </button>
         </div>

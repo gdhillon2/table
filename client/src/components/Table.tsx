@@ -49,7 +49,7 @@ const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
               <span className="w-1/3">{item.item}</span>
               <span className="w-1/3">{item.amount}</span>
               <span className="w-1/3">{formatDate(item.created)}</span>
-              <span className="w-1/3 flex flex-col sm:flex-row items-end justify-end gap-2">
+              <span className="w-1/6 flex flex-col sm:flex-row gap-2">
                 <button
                   onClick={() => onEdit(item)}
                   className="bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded max-w-max"
