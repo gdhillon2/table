@@ -8,7 +8,6 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
   const [item, setItem] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const [example, setExample] = useState<string>("");
 
   const nameRef = useRef<HTMLInputElement>(null);
   const amountRef = useRef<HTMLInputElement>(null);
@@ -59,14 +58,13 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
 
   return (
     <div className="flex flex-col items-center my-3 space-y-2 w-full">
+      {error && <p>{error}</p>}
       <form
         onSubmit={handleSubmit}
         onKeyDown={handleKeyDown}
         className="w-full"
       >
-      <label className="text-slate-200">
-        add an item
-      </label>
+        <label className="text-slate-200">add an item</label>
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full">
           <div className="flex flex-col sm:flex-row sm:items-center sm:w-auto">
             <input
