@@ -7,7 +7,7 @@ const TableHeader: React.FC = () => {
         <span className="w-1/3 font-semibold">name</span>
         <span className="w-1/3 font-semibold">amount</span>
         <span className="w-1/3 font-semibold">date</span>
-        <span className="w-1/6">actions</span>
+        <span className="w-1/6 font-semibold">actions</span>
       </div>
     </div>
   );
