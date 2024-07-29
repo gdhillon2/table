@@ -85,12 +85,12 @@ const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
               {editingItemId === item.itemid ? (
                 <>
                   <input
-                    className="w-1/3 bg-slate-700 text-white p-1 rounded mr-2"
+                    className="w-1/3 bg-slate-700 text-white px-2 py-1 rounded mr-2"
                     value={editItem}
                     onChange={(e) => setEditItem(e.target.value)}
                   />
                   <input
-                    className="w-1/3 bg-slate-700 text-white p-1 rounded mr-2"
+                    className="w-1/3 bg-slate-700 text-white px-2 py-1 rounded mr-2"
                     value={editAmount}
                     onChange={(e) => setEditAmount(e.target.value)}
                   />
