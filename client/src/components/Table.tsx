@@ -102,18 +102,18 @@ const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
                 </>
               )}
               <span className="w-1/3">{formatDate(item.created)}</span>
-              <span className="w-1/6 flex flex-col sm:flex-row gap-2">
+              <span className="w-1/6 flex flex-col sm:flex-row gap-2 justify-between">
                 {editingItemId === item.itemid ? (
                   <>
                     <button
                       onClick={() => handleSave(item.itemid)}
-                      className="bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded max-w-max"
+                      className="flex-grow w-full bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded "
                     >
                       save
                     </button>
                     <button
                       onClick={handleCancel}
-                      className="bg-red-500 hover:bg-red-800 hover:text-white text-black transition-colors duration-500 text-xs p-2 rounded max-w-max"
+                      className="flex-grow w-full bg-red-500 hover:bg-red-800 hover:text-white text-black transition-colors duration-500 text-xs p-2 rounded"
                     >
                       cancel
                     </button>
@@ -122,13 +122,13 @@ const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
                   <>
                     <button
                       onClick={() => handleEdit(item)}
-                      className="bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded max-w-max"
+                      className="flex-grow w-full bg-slate-100 hover:bg-slate-800 hover:text-white transition-colors duration-500 text-black text-xs p-2 rounded "
                     >
                       edit
                     </button>
                     <button
                       onClick={() => handleDelete(item.itemid)}
-                      className="bg-red-500 hover:bg-red-800 hover:text-white text-black transition-colors duration-500 text-xs p-2 rounded max-w-max"
+                      className="flex-grow w-full bg-red-500 hover:bg-red-800 hover:text-white text-black transition-colors duration-500 text-xs p-2 rounded"
                     >
                       delete
                     </button>
