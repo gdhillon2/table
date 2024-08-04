@@ -86,7 +86,7 @@ const EntryForm: React.FC<EntryFormProps> = ({ fetchData }) => {
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-          <button className="text-slate-100 bg-slate-900 hover:bg-slate-400 hover:text-slate-900 py-1 px-2 rounded">
+          <button className="text-slate-100 bg-slate-900 hover:bg-slate-400 transition-all duration-500 hover:text-slate-900 py-1 px-2 rounded">
             add
           </button>
         </div>

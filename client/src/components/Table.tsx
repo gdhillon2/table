@@ -4,10 +4,9 @@ import ShoppingItem from "../types/shoppingItem";
 interface TableProps {
   items: ShoppingItem[];
   fetchData: () => Promise<void>;
-  onEdit: (item: ShoppingItem) => void;
 }
 
-const Table: React.FC<TableProps> = ({ items, fetchData, onEdit }) => {
+const Table: React.FC<TableProps> = ({ items, fetchData }) => {
   const [error, setError] = useState<string | null>(null);
   const [editingItemId, setEditingItemId] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<string>("");
